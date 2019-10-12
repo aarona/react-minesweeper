@@ -74,7 +74,8 @@ const App: React.FC = () => {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="1">
                 <p>
-                  Source code link to go here...
+                  You can find the source code to this application located here:<br/>
+                  <a target="_blank" rel="noopener noreferrer" href="https://github.com/aarona/react-minesweeper">https://github.com/aarona/react-minesweeper</a>
                 </p>
               </Accordion.Collapse>
             </div>
