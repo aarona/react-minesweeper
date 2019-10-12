@@ -106,6 +106,9 @@ span.flags {
 span.danger {
   color: #dc3545;
 }
+span.note {
+  font-size: 12px;
+}
 img.mine {
   width: 20px;
   height: 20px;

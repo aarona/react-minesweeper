@@ -153,6 +153,7 @@ export const Game: React.FC<IGameProps> = ({height, width, mineCount, handleNewG
             <FormGroup>
               <Button variant={(flagMode ? "danger" : "primary")} onClick={handleFlagMode} disabled={game.status !== GameStatus.Running}>Flag Mode: {(flagMode ? "On" : "Off")}</Button>
             </FormGroup>
+            <span className="note">(Right click cells if you're using a desktop)</span>
           </Col>
           <Col sm={{ span: 3 }} md={{ span: 3 }} className="button-row">
             <span className={(flags > mineCount ? "flags danger" : "flags")}>Flags: {flags}/{mineCount}</span>
