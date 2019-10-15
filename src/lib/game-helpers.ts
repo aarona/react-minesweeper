@@ -34,8 +34,8 @@ export const startingGameState = (
   game.status = GameStatus.Running
   
   // todo get rid of this because we will validate later.
-  if (mineCount >= height * width - 10)
-    mineCount = height * width - 10
+  //if (mineCount >= height * width - 10)
+  //  mineCount = height * width - 10
 
   const safeCellCount = height * width - mineCount
   createMines(rows, height, width, mineCount, row, col)

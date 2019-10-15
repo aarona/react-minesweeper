@@ -13,7 +13,6 @@ export const Game: React.FC<IGameProps> = ({height, width, mineCount, handleNewG
 
   const handleClick = (row: number, col: number) => {
     if(flagMode) {
-      console.log("Handling Context Menu");
       handleContextMenu(row, col)
 
     } else {
@@ -57,12 +56,10 @@ export const Game: React.FC<IGameProps> = ({height, width, mineCount, handleNewG
 
     if (newGameState.status === GameStatus.Running) {
       if(cell.status === CellStatus.Flagged) {
-        console.log("Flagged so unflagging");
         
         cell.status = CellStatus.Hidden
         setFlags(flags - 1)
       } else if (cell.status === CellStatus.Hidden) {
-        console.log("Hidden so flagging");
         
         cell.status = CellStatus.Flagged
         setFlags(flags + 1)

@@ -22,7 +22,6 @@ export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => 
     const errors:string[] = []
 
     if(!gameDifficulty) {
-      console.log("ERROR!");
       
       errors.push("Please select a difficulty before playing.")
     } else {

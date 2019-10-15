@@ -5,15 +5,6 @@ import mineImg from '../images/mine.png'
 import explodedImg from '../images/exploded.png'
 import flagImg from '../images/flag.png'
 
-export interface CellProps {
-  row: number
-  col: number
-  mine: boolean
-  revealed: boolean
-  hintValue: number
-  handleClick: (row: number, col: number) => void
-}
-
 export const Cell: React.FC<ICellProps> = ({
   cell: {
     row,
