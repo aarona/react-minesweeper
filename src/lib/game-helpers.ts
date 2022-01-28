@@ -33,10 +33,6 @@ export const startingGameState = (
   const { data: rows } = game
   game.status = GameStatus.Running
   
-  // todo get rid of this because we will validate later.
-  //if (mineCount >= height * width - 10)
-  //  mineCount = height * width - 10
-
   const safeCellCount = height * width - mineCount
   createMines(rows, height, width, mineCount, row, col)
 
@@ -69,36 +65,9 @@ export const revealCell = (game: IGame, row: number, col: number): boolean => {
 }
 
 export const getHintValueClasses = (hintValue: number): string => {
-  let hintValueClass: string = ""
-
-  switch (hintValue) {
-    case 1:
-      hintValueClass = "one"
-      break
-    case 2:
-      hintValueClass = "two"
-      break
-    case 3:
-      hintValueClass = "three"
-      break
-    case 4:
-      hintValueClass = "four"
-      break
-    case 5:
-      hintValueClass = "five"
-      break
-    case 6:
-      hintValueClass = "six"
-      break
-    case 7:
-      hintValueClass = "seven"
-      break
-    case 8:
-      hintValueClass = "eight"
-      break
-  }
-
-  return hintValueClass
+  const valueClasses = ["one", "two", "three", "four", "five", "six", "sevem", "eight"]
+  
+  return valueClasses[hintValue - 1]
 }
 
 const createMines = (
@@ -109,18 +78,6 @@ const createMines = (
   row: number,
   col: number
   ): void => {
-  /* 
-    // A repeatable test for testing cell revealing.
-    // only works reliably for an 8x8 game.
-    rows[3][0].mine =
-    rows[5][0].mine =
-    rows[5][3].mine =
-    rows[5][5].mine =
-    rows[5][7].mine =
-    rows[6][4].mine =
-    rows[7][1].mine =
-    rows[7][4].mine = true
-  */
 
   const shuffleArray = (array: Array<[number, number]>): void => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -151,6 +108,7 @@ const createMines = (
   })
 } 
 
+// Determines the hint number for a cell after it's been clicked.
 const getNeighborMineCount = (game: IGame, cell: ICell): number => {
   let neighbors = getNeighbors(game, cell)
   

@@ -35,11 +35,11 @@ const App: React.FC = () => {
       <Row>
         <Col sm="12" md={{ span: 8, offset: 2 }} className="button-row">
           <Accordion>
-            <div>
-              <Accordion.Toggle as={"h4"} eventKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header as={"h4"}>
                 &raquo; Minesweeper instructions <span>(Click to view)</span>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="0">
+              </Accordion.Header>
+              <Accordion.Body>
                 <>
                 <p>
                   You are presented with a board of squares. Some squares contain mines (bombs), others don't.
@@ -66,19 +66,19 @@ const App: React.FC = () => {
                   mines there are in the game).
                 </p>
                 </>
-              </Accordion.Collapse>
-            </div>
-            <div>
-              <Accordion.Toggle as={"h4"} eventKey="1">
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey='1'>
+              <Accordion.Header as={"h4"}>
                 &raquo; Source code <span>(Click to view)</span>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="1">
+              </Accordion.Header>
+              <Accordion.Body>
                 <p>
                   You can find the source code to this application located here:<br/>
                   <a target="_blank" rel="noopener noreferrer" href="https://github.com/aarona/react-minesweeper">https://github.com/aarona/react-minesweeper</a>
                 </p>
-              </Accordion.Collapse>
-            </div>
+              </Accordion.Body>
+            </Accordion.Item>
           </Accordion>
         </Col>
       </Row>

@@ -1,7 +1,8 @@
 import React, { useState, MouseEvent } from 'react'
 import { ISettingsProps } from '../lib/interfaces'
 import { Modal, Button, Row, Col, Form, FormGroup, Container } from 'react-bootstrap'
-import { customParseInt, InputFormEvent } from '../lib/util'
+import { customParseInt } from '../lib/util'
+import e from 'express'
 
 export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => {
   const [height, setHeight] = useState(0)
@@ -19,26 +20,7 @@ export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => 
   ]
 
   const onSubmit = (): void => {
-    const errors:string[] = []
-
-    if(!gameDifficulty) {
-      
-      errors.push("Please select a difficulty before playing.")
-    } else {
-      if(height < 8 || height > 30) {
-        errors.push("Height must be between 8 and 30.")
-      }
-      
-      if(width < 8 || width > 30) {
-        errors.push("Width must be between 8 and 30.")
-      }
-      
-      if(mineCount > height * width - 10) {
-        errors.push("You must leave at least 10 cells open (mine free).")
-      } else if (mineCount === 0) {
-        errors.push("You must have at least one mine to play the game.")
-      }
-    }
+    const errors = errorMessages()
       
     if(errors.length) {
       setValidationModal(true)
@@ -46,6 +28,32 @@ export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => 
     } else {
       handleSettingsSubmit(height, width, mineCount)
     }
+  }
+
+  const errorMessages = (): string[] => {
+    const errors: string[] = []
+
+    if (!gameDifficulty) {
+      errors.push("Please select a difficulty before playing.")
+
+    } else {
+      if (height < 8 || height > 30) {
+        errors.push("Height must be between 8 and 30.")
+      }
+
+      if (width < 8 || width > 30) {
+        errors.push("Width must be between 8 and 30.")
+      }
+
+      if (mineCount > height * width - 10) {
+        errors.push("You must leave at least 10 cells open (mine free).")
+
+      } else if (mineCount === 0) {
+        errors.push("You must have at least one mine to play the game.")
+      }
+    }
+
+    return errors
   }
 
   const handleValidationClose = () => setValidationModal(false)
@@ -90,6 +98,8 @@ export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => 
     }
   }
 
+  const changeValue = (e: any): void => setHeight(customParseInt(e.currentTarget.value))
+
   return (
     <Col sm={{ span: 6, offset: 3 }}>
       <Container>
@@ -118,27 +128,21 @@ export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => 
             <Row><Col>
               <FormGroup>
                 <Form.Label>Height:
-                  <Form.Control placeholder="Enter height" value={height.toString()} onChange={(e: InputFormEvent): void => {
-                    setHeight(customParseInt(e.currentTarget.value))
-                  }}/>
+                  <Form.Control placeholder="Enter height" value={height.toString()} onChange={changeValue}/>
                 </Form.Label>
               </FormGroup>
             </Col></Row>
             <Row><Col>
               <FormGroup>
                 <Form.Label>Width:
-                  <Form.Control placeholder="Enter width" value={width.toString()} onChange={(e: InputFormEvent): void => {
-                    setWidth(customParseInt(e.currentTarget.value))
-                  }}/>
+                  <Form.Control placeholder="Enter width" value={width.toString()} onChange={changeValue}/>
                 </Form.Label>
               </FormGroup>
             </Col></Row>
             <Row><Col>
               <FormGroup>
                 <Form.Label>Number of mines:
-                  <Form.Control placeholder="Number of mines" value={mineCount.toString()} onChange={(e: InputFormEvent): void => {
-                    setMineCount(customParseInt(e.currentTarget.value))
-                  }}/>
+                  <Form.Control placeholder="Number of mines" value={mineCount.toString()} onChange={changeValue}/>
                 </Form.Label>
               </FormGroup>
             </Col></Row>
