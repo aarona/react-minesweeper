@@ -2,7 +2,6 @@ import React, { useState, MouseEvent } from 'react'
 import { ISettingsProps } from '../lib/interfaces'
 import { Modal, Button, Row, Col, Form, FormGroup, Container } from 'react-bootstrap'
 import { customParseInt } from '../lib/util'
-import e from 'express'
 
 export const Settings: React.FC<ISettingsProps> = ({ handleSettingsSubmit }) => {
   const [height, setHeight] = useState(0)
